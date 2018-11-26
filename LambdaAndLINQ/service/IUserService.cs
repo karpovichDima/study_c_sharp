@@ -14,5 +14,6 @@ namespace LambdaAndLINQ.service
         List<User> ReplaceSetToList(HashSet<User> set);
         void SortingList(List<User> users);
         List<User> ReplaceUserSetToList();
+        void DeleteUsersLowerThan10Years(string consoleLine);
     }
 }

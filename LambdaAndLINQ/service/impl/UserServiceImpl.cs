@@ -8,6 +8,7 @@ namespace LambdaAndLINQ.service.impl
     {
         private HashSet<User> userSet;
         private int[] keys;
+        private List<User> users;
 
         public UserServiceImpl()
         {
@@ -50,12 +51,29 @@ namespace LambdaAndLINQ.service.impl
         public void SortingList(List<User> users)
         {
             users.Sort();
+            this.users = users;
         }
 
         public List<User> ReplaceUserSetToList()
         {
             List<User> userList = new List<User>(userSet);
             return userList;
+        }
+
+        public void DeleteUsersLowerThan10Years(string consoleLine)
+        {
+            if (consoleLine == "Delete")
+            {
+                var listToDelete = new List<User>();
+                int usersCount = users.Count;
+                this.users.RemoveAll(UserLowerThan10AgePredicate);
+            }
+        }
+
+
+        private static bool UserLowerThan10AgePredicate(User user)
+        {
+            return user.Age < 10;
         }
     }
 }

@@ -36,8 +36,23 @@ namespace LambdaAndLINQ
             int calculateSumOfAges = iUserService.CalculateSumOfAges(tuple);
             Console.WriteLine("Sum of the ages for first and second user: " + calculateSumOfAges + "\r\n");
 
+            iUserService.DeleteUsersLowerThan10Years(Console.ReadLine());
+            Console.WriteLine("Users older than 10 years: " + users.Count + "\r\n");
 
+            ListUserToConsole(users);
+            
             Console.ReadKey();
+        }
+
+        private static void ListUserToConsole(List<User> users)
+        {
+            int counter = 1;
+            foreach (var user in users)
+            {
+                Console.WriteLine(counter + ": Name: " + user.Name + "\r\n" + "Age: " + user.Age + "\r\n");
+                counter++;
+            }
+
         }
     }
     
