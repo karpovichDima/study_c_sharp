@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using LambdaAndLINQ.model;
 using LambdaAndLINQ.service;
+using LambdaAndLINQ.service.attribute;
 using LambdaAndLINQ.service.impl;
 
 namespace LambdaAndLINQ
@@ -49,8 +51,21 @@ namespace LambdaAndLINQ
             output("Users older than 10 years: " + users.Count + "\r\n");
 
             ListUserToConsole(users);
+
+            ReflectionForFindMyCustomAttribute();
             
+
             Console.ReadKey();
+        }
+
+        private static void ReflectionForFindMyCustomAttribute()
+        {
+            Type t = typeof(Admin);
+            object[] attrs = t.GetCustomAttributes(false);
+            foreach (RoleInfoAttribute roleAttr in attrs)
+            {
+                Console.WriteLine(roleAttr.Name + "\r\n");
+            }
         }
 
         private static void ListUserToConsole(List<User> users)

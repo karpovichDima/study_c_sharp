@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using LambdaAndLINQ.service.attribute;
+
+namespace LambdaAndLINQ.model
+{
+    [RoleInfo("Manager")]
+    class Admin
+    {
+        public string Name { get; set; }
+        public Admin(string n)
+        {
+            Name = n;
+        }
+
+        private int Payment(int hours, int perhour)
+        {
+            return hours * perhour;
+        }
+    }
+}

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using LambdaAndLINQ.service.attribute;
 
 namespace LambdaAndLINQ
 {
-    public class User : IEquatable<User>, IComparable<User>
+   public class User : IEquatable<User>, IComparable<User>
     {
         public string Name { get; set; }
 
