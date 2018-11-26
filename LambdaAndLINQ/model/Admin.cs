@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using LambdaAndLINQ.service.attribute;
+using LambdaAndLINQ.utils;
 
 namespace LambdaAndLINQ.model
 {
@@ -12,6 +13,11 @@ namespace LambdaAndLINQ.model
         public Admin(string n)
         {
             Name = n;
+        }
+
+        public Admin()
+        {
+            throw new ExceptionCreatingInstance("Custom exception isWorked");
         }
 
         private int Payment(int hours, int perhour)

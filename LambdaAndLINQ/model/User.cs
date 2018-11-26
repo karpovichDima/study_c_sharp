@@ -17,6 +17,10 @@ namespace LambdaAndLINQ
             this.Name = name;
         }
 
+        public User()
+        {
+        }
+
         protected bool Equals(User other)
         {
             return string.Equals(Name, other.Name) && Age == other.Age;
