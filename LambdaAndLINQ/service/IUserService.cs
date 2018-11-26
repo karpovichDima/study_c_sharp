@@ -15,5 +15,6 @@ namespace LambdaAndLINQ.service
         void SortingList(List<User> users);
         List<User> ReplaceUserSetToList();
         void DeleteUsersLowerThan10Years(string consoleLine);
+        void ShowMessageEvent(string message);
     }
 }

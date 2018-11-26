@@ -9,19 +9,22 @@ namespace LambdaAndLINQ
     {
         public static Int16 USERS_COUNT = 5;
 
-        delegate void OutputTextToConsole(string text);
+        public delegate void OutputTextToConsole(string text);
+        public static event OutputTextToConsole RowCreated;
 
         public static void Main(string[] args)
         {
             IUserService iUserService = new UserServiceImpl();
-
+           
             OutputTextToConsole output = (string text) => Console.WriteLine(text);
+            RowCreated += iUserService.ShowMessageEvent;
 
             for (int i = 0; i < USERS_COUNT; i++)
             {
                 output("set User name");
                 iUserService.CreateNewUsers(Console.ReadLine());
                 output("\r\n");
+                RowCreated("---- EVENT - Was created empty row ----");
             }
 
             output("\r\n");
@@ -60,6 +63,8 @@ namespace LambdaAndLINQ
             }
 
         }
+
+        
     }
     
 }

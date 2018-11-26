@@ -71,7 +71,10 @@ namespace LambdaAndLINQ.service.impl
             }
         }
 
-
+        public void ShowMessageEvent(string message)
+        {
+            Console.WriteLine(message);
+        }
 
         private static bool UserLowerThan10AgePredicate(User user)
         {
