@@ -22,13 +22,20 @@ namespace LambdaAndLINQ
             Console.WriteLine("Count of the element: " + iUserService.GetCountUsers());
 
             int counter = 1;
-            HashSet<User> userSet = iUserService.GetUserSet();
-            foreach (var user in userSet)
+            
+            List<User> users = iUserService.ReplaceUserSetToList();
+            iUserService.SortingList(users);
+            
+            foreach (var user in users)
             {
                 iUserService.SetKeysInArray(counter);
                 Console.WriteLine(counter + ": Name: " + user.Name + "\r\n" + "Age: " + user.Age + "\r\n");
                 counter++;
             }
+            var tuple = (users[0].Age, users[1].Age);
+            int calculateSumOfAges = iUserService.CalculateSumOfAges(tuple);
+            Console.WriteLine("Sum of the ages for first and second user: " + calculateSumOfAges + "\r\n");
+
 
             Console.ReadKey();
         }

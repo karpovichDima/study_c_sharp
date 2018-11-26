@@ -10,5 +10,9 @@ namespace LambdaAndLINQ.service
         int GetCountUsers();
         HashSet<User> GetUserSet();
         void SetKeysInArray(int counter);
+        int CalculateSumOfAges((int, int) tuple);
+        List<User> ReplaceSetToList(HashSet<User> set);
+        void SortingList(List<User> users);
+        List<User> ReplaceUserSetToList();
     }
 }

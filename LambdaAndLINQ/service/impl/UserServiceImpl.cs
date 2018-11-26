@@ -36,6 +36,26 @@ namespace LambdaAndLINQ.service.impl
             keys[counter - 1] = counter;
         }
 
+        public int CalculateSumOfAges((int, int) tuple)
+        {
+            return tuple.Item1 + tuple.Item2;
+        }
 
+        public List<User> ReplaceSetToList(HashSet<User> set)
+        {
+            List<User> userList = new List<User>(set);
+            return userList;
+        }
+
+        public void SortingList(List<User> users)
+        {
+            users.Sort();
+        }
+
+        public List<User> ReplaceUserSetToList()
+        {
+            List<User> userList = new List<User>(userSet);
+            return userList;
+        }
     }
 }

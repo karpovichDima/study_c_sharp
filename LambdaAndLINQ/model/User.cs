@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LambdaAndLINQ
 {
-    public class User
+    public class User : IEquatable<User>, IComparable<User>
     {
         public string Name { get; set; }
 
@@ -19,6 +19,20 @@ namespace LambdaAndLINQ
         protected bool Equals(User other)
         {
             return string.Equals(Name, other.Name) && Age == other.Age;
+        }
+
+        bool IEquatable<User>.Equals(User other)
+        {
+            return Equals(other);
+        }
+
+        public int CompareTo(User other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+            if (ReferenceEquals(null, other)) return 1;
+            var nameComparison = string.Compare(Name, other.Name, StringComparison.Ordinal);
+            if (nameComparison != 0) return nameComparison;
+            return Age.CompareTo(other.Age);
         }
 
         public override bool Equals(object obj)
