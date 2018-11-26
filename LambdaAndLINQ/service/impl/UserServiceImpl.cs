@@ -10,10 +10,11 @@ namespace LambdaAndLINQ.service.impl
         private int[] keys;
         private List<User> users;
 
+        
         public UserServiceImpl()
         {
             this.userSet = new HashSet<User>();
-            keys = new int[5];
+            keys = new int[Program.USERS_COUNT];
         }
 
         public void CreateNewUsers(String name)
@@ -69,6 +70,7 @@ namespace LambdaAndLINQ.service.impl
                 this.users.RemoveAll(UserLowerThan10AgePredicate);
             }
         }
+
 
 
         private static bool UserLowerThan10AgePredicate(User user)

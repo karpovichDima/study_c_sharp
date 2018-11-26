@@ -7,19 +7,25 @@ namespace LambdaAndLINQ
 {
     public class Program
     {
+        public static Int16 USERS_COUNT = 5;
+
+        delegate void OutputTextToConsole(string text);
+
         public static void Main(string[] args)
         {
             IUserService iUserService = new UserServiceImpl();
-            
-            for (int i = 0; i < 5; i++)
+
+            OutputTextToConsole output = (string text) => Console.WriteLine(text);
+
+            for (int i = 0; i < USERS_COUNT; i++)
             {
-                Console.WriteLine("set User name");
+                output("set User name");
                 iUserService.CreateNewUsers(Console.ReadLine());
-                Console.WriteLine("\r\n");
+                output("\r\n");
             }
 
-            Console.WriteLine("\r\n");
-            Console.WriteLine("Count of the element: " + iUserService.GetCountUsers());
+            output("\r\n");
+            output("Count of the element: " + iUserService.GetCountUsers());
 
             int counter = 1;
             
@@ -29,15 +35,15 @@ namespace LambdaAndLINQ
             foreach (var user in users)
             {
                 iUserService.SetKeysInArray(counter);
-                Console.WriteLine(counter + ": Name: " + user.Name + "\r\n" + "Age: " + user.Age + "\r\n");
+                output(counter + ": Name: " + user.Name + "\r\n" + "Age: " + user.Age + "\r\n");
                 counter++;
             }
             var tuple = (users[0].Age, users[1].Age);
             int calculateSumOfAges = iUserService.CalculateSumOfAges(tuple);
-            Console.WriteLine("Sum of the ages for first and second user: " + calculateSumOfAges + "\r\n");
+            output("Sum of the ages for first and second user: " + calculateSumOfAges + "\r\n");
 
             iUserService.DeleteUsersLowerThan10Years(Console.ReadLine());
-            Console.WriteLine("Users older than 10 years: " + users.Count + "\r\n");
+            output("Users older than 10 years: " + users.Count + "\r\n");
 
             ListUserToConsole(users);
             
