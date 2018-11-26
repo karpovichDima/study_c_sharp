@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LambdaAndLINQ.model;
 using LambdaAndLINQ.service;
 using LambdaAndLINQ.service.attribute;
@@ -19,9 +20,10 @@ namespace LambdaAndLINQ
         public static void Main(string[] args)
         {
             IUserService iUserService = new UserServiceImpl();
-
             OutputTextToConsole output = (string text) => Console.WriteLine(text);
             RowCreated += iUserService.ShowMessageEvent;
+
+            int? nullableVariable = null;
 
             for (int i = 0; i < USERS_COUNT; i++)
             {
@@ -59,15 +61,34 @@ namespace LambdaAndLINQ
 
             try
             {
-                Admin admin = new Admin();
+                //Admin admin = new Admin();
             }
             catch (ExceptionCreatingInstance ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
 
+            AddUsersToList(users);
+
+            ListUserToConsole(users);
+
+            var selectedTeams = from t in users // определяем каждый объект из teams как t
+                                where t.Age < 10 //фильтрация по критерию
+                orderby t  // упорядочиваем по возрастанию
+                select t; // выбираем объект
+
+            foreach (User s in selectedTeams)
+                Console.WriteLine("Name: " + s.Name + "\r\n" + "Age: " + s.Age + "\r\n");
 
             Console.ReadKey();
+        }
+
+        private static void AddUsersToList(List<User> users)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                users.Add(new User{Name = "Default"});
+            }
         }
 
         private static void ReflectionForFindMyCustomAttribute()

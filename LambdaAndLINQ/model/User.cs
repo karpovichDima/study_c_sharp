@@ -19,6 +19,8 @@ namespace LambdaAndLINQ
 
         public User()
         {
+            Random rnd = new Random();
+            this.Age = rnd.Next(1, 19);
         }
 
         protected bool Equals(User other)
